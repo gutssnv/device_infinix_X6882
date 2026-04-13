@@ -191,13 +191,14 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss-V1-ndk.vendor
 
 PRODUCT_PACKAGES += \
-    libcurl.vendor 
+    libcurl.vendor
 
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.example \
     android.hardware.health-service.example-recovery \
-    charger_res_images_vendor
+    charger_res_images_vendor \
+    x6882-health-service-lib
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -488,6 +489,23 @@ PRODUCT_PACKAGES += \
     hostapd \
     libkeystore-wifi-hidl:64 \
     libkeystore-engine-wifi-hidl:64
+
+# ZxA
+PERF_GOV_SUPPORTED := false
+PERF_DEFAULT_GOV := schedutil
+BYPASS_CHARGE_SUPPORTED := true
+BYPASS_CHARGE_TOGGLE_PATH := /sys/devices/platform/charger/bypass_charger
+TARGET_DISABLES_LIBPERF := true
+
+PRODUCT_COPY_FILES += \
+    device/infinix/X6882/configs/axion/ax_perf_resources.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ax_perf_resources.xml \
+    device/infinix/X6882/configs/axion/ax_perf_boosts.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ax_perf_boosts.xml \
+    device/infinix/X6882/configs/axion/ax_perf_thermal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ax_perf_thermal.xml \
+    device/infinix/X6882/configs/axion/ax_perf_threads.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ax_perf_threads.xml
+
+# Health Service Wrapper
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/HealthService/x6882-health-service.sh:$(TARGET_COPY_OUT_VENDOR)/bin/x6882-health-service
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/infinix/X6882/X6882-vendor.mk)

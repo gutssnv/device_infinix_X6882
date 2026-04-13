@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<perf-config>
+    <atmc>
+        <!--
+            Little = cpu0-5 Cortex-A55 (500-2000 MHz)
+            Big    = cpu6-7 Cortex-A76 (725-2200 MHz)
+        -->
+        <cpu_levels little="500,2000" big="725,2200" />
+
+        <!--
+            GPU GED OPP (min=43 (390MHz), max=0 (1100MHz)
+        -->
+        <gpu_levels min="43" max="0" />
+    </atmc>
+</perf-config>

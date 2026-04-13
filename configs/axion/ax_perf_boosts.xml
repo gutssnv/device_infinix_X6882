@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boosts>
+    <!-- Reusable boost-resource groups -->
+    <boost-resource id="0x01fd" name="latency_boost">
+        <set resource="cpu_min_big" id="0x0003" value="1200000" />
+        <set resource="uclamp_top_min" id="0x0014" value="80" />
+    </boost-resource>
+
+    <boost-resource id="0x01fe" name="perf_boost">
+        <set resource="cpu_min_little" id="0x0001" value="1000000" />
+        <set resource="cpu_min_big"    id="0x0003" value="1600000" />
+        <set resource="uclamp_top_min" id="0x0014" value="100" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="10" />
+    </boost-resource>
+
+    <!-- opcode 1: app launch -->
+    <boost opcode="1" timeout_ms="3000" name="first_launch"
+           uc="SvpPolicy" dc="MaxPerformance">
+        <set resource="latency_boost" id="0x01fd" />
+    </boost>
+
+    <!-- opcode 2: scroll/fling -->
+    <boost opcode="2" timeout_ms="500" name="scroll">
+        <set resource="cpu_min_big"   id="0x0003" value="800000" />
+        <set resource="uclamp_top_min" id="0x0014" value="60" />
+        <set resource="gpu_boost_opp" id="0x0030" value="20" />
+    </boost>
+
+    <!-- opcode 3: touch/tap -->
+    <boost opcode="3" timeout_ms="200" name="touch">
+        <set resource="cpu_min_big"   id="0x0003" value="725000" />
+        <set resource="uclamp_top_min" id="0x0014" value="40" />
+    </boost>
+
+    <!-- opcode 4: rotation -->
+    <boost opcode="4" timeout_ms="1000" name="rotation">
+        <set resource="latency_boost" id="0x01fd" />
+        <set resource="gpu_boost_opp" id="0x0030" value="15" />
+    </boost>
+
+    <!-- opcode 5: game mode (indefinite, released explicitly) -->
+    <boost opcode="5" timeout_ms="0" name="game_boost">
+        <set resource="perf_boost" id="0x01fe" />
+        <set resource="gpu_boost_opp"    id="0x0030" value="0" />
+        <set resource="gpu_upbound_opp"  id="0x0031" value="0" />
+    </boost>
+
+    <!-- opcode 6: frame rescue (drop detected) -->
+    <boost opcode="6" timeout_ms="100" name="frame_rescue">
+        <set resource="cpu_min_big"   id="0x0003" value="2000000" />
+        <set resource="gpu_boost_opp" id="0x0030" value="5" />
+    </boost>
+
+    <!-- opcode 7: notification shade -->
+    <boost opcode="7" timeout_ms="300" name="shade">
+        <set resource="cpu_min_little" id="0x0001" value="800000" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="25" />
+    </boost>
+</boosts>
