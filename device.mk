@@ -437,7 +437,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/mediatek/libmtkperf_client \
     hardware/google/interfaces \
     hardware/millennium \
-    hardware/google/pixel 
+    hardware/millennium/libtranlog \
+    hardware/google/pixel  
 
 # Thermal
 PRODUCT_PACKAGES += \
