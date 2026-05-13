@@ -257,11 +257,11 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.lights-service.transsion
+    android.hardware.light-service.lineage
 
 # Lineage-Specific Overlays
 PRODUCT_PACKAGES += \
-	LineageApertureOverlayTarget \
+    LineageApertureOverlayTarget \
     LineageDialerOverlayTarget \
     LineageSettingsOverlayTarget
 
@@ -437,8 +437,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
     hardware/google/interfaces \
-    hardware/google/pixel \
-    hardware/transsion
+    hardware/google/pixel
 
 # Thermal
 PRODUCT_PACKAGES += \
