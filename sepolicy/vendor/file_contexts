@@ -1,3 +1,6 @@
+# Audio_Param
+/data/vendor/audiohal(/.*)?    u:object_r:mtk_audiohal_data_file:s0
+
 # BatteryInfo
 /sys/devices/platform/soc/1101a000.i2c/i2c-6/6-006b/power_supply/charger(/.*)?          u:object_r:sysfs_batteryinfo:s0
 /sys/devices/platform/odm/odm:tran_auto_test/power_supply/tran-auto-test(/.*)?           u:object_r:sysfs_batteryinfo:s0
