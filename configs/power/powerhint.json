@@ -414,13 +414,13 @@
     {
       "PowerHint": "INTERACTION",
       "Node": "FGUclampMin",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "10"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "TAUclampMin",
-      "Duration": 5000,
+      "Duration": 1500,
       "Value": "30"
     },
     {
