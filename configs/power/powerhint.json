@@ -1,4 +1,24 @@
 {
+  "AdpfConfig": [
+    {
+      "Name": "DEFAULT",
+      "PID_On": false,
+      "PID_Po": false,
+      "PID_Pc": false,
+      "PID_I": false,
+      "PID_Do": false,
+      "PID_Dc": false,
+      "SamplingWindowP": 1,
+      "SamplingWindowI": 0,
+      "SamplingWindowD": 1,
+      "UclampMinInit": 0,
+      "UclampMinHigh": 512,
+      "UclampMinLow": 0,
+      "SamplingWindow": 1,
+      "ReportingRateLimitNs": 166666666,
+      "Disabled": true
+    }
+  ],
   "Nodes": [
     {
       "Name": "MemFreq",
