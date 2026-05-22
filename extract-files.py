@@ -80,6 +80,7 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('liblog.so'),
     'vendor/lib64/mt6789/libmnl.so': blob_fixup()
         .add_needed('libcutils.so'),
+
     'vendor/lib64/mt6789/libneuralnetworks_sl_driver_mtk_prebuilt.so': blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
@@ -131,6 +132,45 @@ module = ExtractUtilsModule(
     add_firmware_proprietary_file=True,
 )
 
+def patch_allow_undefined_symbols():
+    import re
+    from pathlib import Path
+
+    target_libs = {'libsegmention', 'libvideofilmeffect'}
+    # fixed path
+    source_root = Path(__file__).resolve().parents[3]
+    bp = source_root / 'vendor' / 'infinix' / 'X6882' / 'Android.bp'
+
+    if not bp.exists():
+        print(f'[WARN] {bp} not found, skipping allow_undefined_symbols patch')
+        return
+
+    content = bp.read_text()
+
+    def patch_block(m):
+        block = m.group(0)
+        nm = re.search(r'name:\s*"([^"]+)"', block)
+        if not nm or nm.group(1) not in target_libs:
+            return block
+        if 'allow_undefined_symbols' in block:
+            return block
+        return re.sub(
+            r'(name:\s*"' + re.escape(nm.group(1)) + r'",?\s*\n)',
+            r'\1    allow_undefined_symbols: true,\n',
+            block,
+        )
+
+    patched = re.compile(
+        r'cc_prebuilt_library_shared\s*\{[^}]*(?:\{[^}]*\}[^}]*)?\}', re.DOTALL
+    ).sub(patch_block, content)
+
+    if patched != content:
+        bp.write_text(patched)
+        print('[INFO] Android.bp patched: allow_undefined_symbols added')
+
+
 if __name__ == '__main__':
     utils = ExtractUtils.device(module)
     utils.run()
+    patch_allow_undefined_symbols()
+
