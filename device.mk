@@ -253,7 +253,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.lineage
+    android.hardware.lights-service.millennium
 
 # Lineage-Specific Overlays
 PRODUCT_PACKAGES += \
@@ -436,7 +436,9 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
     hardware/google/interfaces \
-    hardware/google/pixel
+    hardware/millennium \
+    hardware/millennium/libtranlog \
+    hardware/google/pixel  
 
 # Thermal
 PRODUCT_PACKAGES += \

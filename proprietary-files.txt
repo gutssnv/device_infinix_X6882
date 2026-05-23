@@ -1956,9 +1956,6 @@ vendor/lib64/vendor.mediatek.hardware.netdagent@1.0.so
 # TNE
 vendor/lib64/libtneclient.so
 
-# Tranlog
-vendor/lib64/libtranlog.so
-
 # Wi-Fi
 vendor/bin/wlan_assistant
 vendor/etc/init/init.wlan_drv.rc

@@ -23,6 +23,8 @@ namespace_imports = [
     'device/infinix/X6882',
     'hardware/mediatek',
     'hardware/mediatek/libmtkperf_client',
+    'hardware/millennium',
+    'hardware/millennium/libtranlog',
 ]
 
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
