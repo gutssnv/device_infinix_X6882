@@ -56,7 +56,7 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 $(call soong_config_set,android_hardware_audio,run_64bit,true)
-$(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
+$(call soong_config_set,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.0-impl:64 \
     android.hardware.audio.effect@7.0-impl:64 \
@@ -105,6 +105,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_param/SpeechVol_AudioParam.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_param/SpeechVol_AudioParam.xml
 
+# AudioFX
+TARGET_EXCLUDES_AUDIOFX := true
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth-service.mediatek
@@ -113,6 +116,10 @@ PRODUCT_PACKAGES += \
     vendor.mediatek.hardware.bluetooth.audio@2.1.vendor:64 \
     vendor.mediatek.hardware.bluetooth.audio@2.2.vendor:64
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2460
+TARGET_SCREEN_WIDTH := 1080
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     com.android.hardware.boot \
@@ -120,9 +127,9 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.common@1.0.vendor \
-    android.hardware.camera.device@3.6.vendor \
-    android.hardware.camera.provider@2.6.vendor
+    android.hardware.camera.common@1.0.vendor:64 \
+    android.hardware.camera.device@3.6.vendor:64 \
+    android.hardware.camera.provider@2.6.vendor:64
 
 PRODUCT_PACKAGES += \
     libdng_sdk.vendor \
@@ -153,7 +160,10 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    com.android.hardware.drm.clearkey:64
+    com.android.hardware.drm.clearkey
+
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.4.vendor
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -163,7 +173,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
 # FastbootD
 PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.1-impl-mock:64 \
+    android.hardware.fastboot-service.example_recovery \
     fastbootd:64
 
 # Fingerprint
@@ -207,6 +217,9 @@ PRODUCT_PACKAGES += \
     libhwbinder:64 \
     libhwbinder.vendor:64
 
+# Inherit common MediaTek IMS
+$(call inherit-product, vendor/mediatek/ims/ims.mk)
+
 # Init files
 PRODUCT_PACKAGES += \
     fstab.mt6789 \
@@ -225,9 +238,6 @@ PRODUCT_PACKAGES += \
     init.recovery.usb.rc \
     init.sensor_2_0.rc \
     ueventd.mt6789.rc
-
-# Inherit common MediaTek IMS
-$(call inherit-product, vendor/mediatek/ims/ims.mk)
 
 # Include GSI keys
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
@@ -438,7 +448,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/millennium \
     hardware/millennium/libtranlog \
-    hardware/google/pixel  
+    hardware/google/pixel
 
 # Thermal
 PRODUCT_PACKAGES += \
