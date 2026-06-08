@@ -4,8 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# API levels
-PRODUCT_SHIPPING_API_LEVEL := 33
+# AAPT
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_AAPT_CONFIG := normal
 
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
@@ -49,10 +50,6 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 
 # Allow userspace reboots
 $(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
-
-# AAPT
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 $(call soong_config_set,android_hardware_audio,run_64bit,true)
@@ -439,6 +436,9 @@ PRODUCT_PACKAGES += \
     libsqlite.vendor \
     libdumpstateutil.vendor
 
+# Shipping Api Levels
+PRODUCT_SHIPPING_API_LEVEL := 33
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
@@ -461,12 +461,12 @@ PRODUCT_PACKAGES += \
     android.hardware.usb-service.mediatek \
     android.hardware.usb.gadget-service.mediatek
 
+# Userdata
+PRODUCT_FS_COMPRESSION := 1
+
 # Vendor service manager
 PRODUCT_PACKAGES += \
     vndservicemanager
-
-# Userdata
-PRODUCT_FS_COMPRESSION := 1
 
 # Vibrator
 PRODUCT_PACKAGES += \
