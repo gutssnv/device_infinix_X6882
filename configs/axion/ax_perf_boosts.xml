@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boosts>
+    <!--
+        Reusable boost-resource groups
+        MT6789: Little cpu0-5 (500-2000MHz), Big cpu6-7 (725-2200MHz)
+        GPU OPP: 0=1100MHz, 37=390MHz (lower = faster)
+    -->
+
+    <!-- Latency boost: moderate big cluster + uclamp lift -->
+    <boost-resource id="0x01fd" name="latency_boost">
+        <set resource="cpu_min_little" id="0x0001" value="800000" />
+        <set resource="cpu_min_big"    id="0x0003" value="1200000" />
+        <set resource="uclamp_top_min" id="0x0014" value="60" />
+    </boost-resource>
+
+    <!-- Perf boost: high freq on both clusters + GPU near max -->
+    <boost-resource id="0x01fe" name="perf_boost">
+        <set resource="cpu_min_little" id="0x0001" value="1200000" />
+        <set resource="cpu_min_big"    id="0x0003" value="1800000" />
+        <set resource="uclamp_top_min" id="0x0014" value="100" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="3" />
+    </boost-resource>
+
+    <!-- opcode 1: app launch — both clusters + GPU, 3s window -->
+    <boost opcode="1" timeout_ms="3000" name="first_launch"
+           uc="MaxPerformance" dc="MaxPerformance">
+        <set resource="cpu_min_little" id="0x0001" value="1000000" />
+        <set resource="cpu_min_big"    id="0x0003" value="1500000" />
+        <set resource="uclamp_top_min" id="0x0014" value="80" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="10" />
+    </boost>
+
+    <!-- opcode 2: scroll/fling — responsive but not max, 500ms -->
+    <boost opcode="2" timeout_ms="500" name="scroll">
+        <set resource="cpu_min_little" id="0x0001" value="700000" />
+        <set resource="cpu_min_big"    id="0x0003" value="1000000" />
+        <set resource="uclamp_top_min" id="0x0014" value="60" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="18" />
+    </boost>
+
+    <!-- opcode 3: touch/tap — quick responsiveness, 200ms -->
+    <!-- Previously: cpu_min_big=725000 (same as default = no effect!) -->
+    <boost opcode="3" timeout_ms="200" name="touch">
+        <set resource="cpu_min_big"    id="0x0003" value="900000" />
+        <set resource="uclamp_top_min" id="0x0014" value="40" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="28" />
+    </boost>
+
+    <!-- opcode 4: rotation — latency boost + GPU mid, 1s -->
+    <boost opcode="4" timeout_ms="1000" name="rotation">
+        <set resource="latency_boost"  id="0x01fd" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="12" />
+    </boost>
+
+    <!-- opcode 5: game mode — indefinite, released explicitly -->
+    <boost opcode="5" timeout_ms="0" name="game_boost">
+        <set resource="perf_boost"      id="0x01fe" />
+        <set resource="gpu_upbound_opp" id="0x0031" value="0" />
+    </boost>
+
+    <!-- opcode 6: frame rescue — big cluster spike, GPU mid-high, 150ms -->
+    <!-- Previously: timeout 100ms too short; cpu_min_big=2000MHz too aggressive -->
+    <boost opcode="6" timeout_ms="150" name="frame_rescue">
+        <set resource="cpu_min_big"    id="0x0003" value="1700000" />
+        <set resource="uclamp_top_min" id="0x0014" value="80" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="8" />
+    </boost>
+
+    <!-- opcode 7: notification shade — light boost, 300ms -->
+    <!-- Previously: only little cluster, no uclamp -->
+    <boost opcode="7" timeout_ms="300" name="shade">
+        <set resource="cpu_min_little" id="0x0001" value="800000" />
+        <set resource="cpu_min_big"    id="0x0003" value="900000" />
+        <set resource="uclamp_top_min" id="0x0014" value="30" />
+        <set resource="gpu_boost_opp"  id="0x0030" value="22" />
+    </boost>
+</boosts>

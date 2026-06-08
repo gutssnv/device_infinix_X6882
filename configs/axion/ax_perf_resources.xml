@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CPU Little (cpu0-5, Cortex-A55, 500-2000 MHz) -->
+    <resource id="0x0001" name="cpu_min_little"
+              path="/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq" default="500000" />
+    <resource id="0x0002" name="cpu_max_little"
+              path="/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq" default="2000000" />
+
+    <!-- CPU Big (cpu6-7, Cortex-A76, 725-2200 MHz) -->
+    <resource id="0x0003" name="cpu_min_big"
+              path="/sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq" default="725000" />
+    <resource id="0x0004" name="cpu_max_big"
+              path="/sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq" default="2200000" />
+
+    <!-- uclamp top-app cgroup (verified writable) -->
+    <resource id="0x0014" name="uclamp_top_min"
+              path="/dev/cpuctl/top-app/cpu.uclamp.min" default="0" />
+    <resource id="0x0015" name="uclamp_top_max"
+              path="/dev/cpuctl/top-app/cpu.uclamp.max" default="max" />
+
+    <!-- uclamp foreground cgroup (verified writable) -->
+    <resource id="0x0016" name="uclamp_fg_min"
+              path="/dev/cpuctl/foreground/cpu.uclamp.min" default="0" />
+    <resource id="0x0017" name="uclamp_fg_max"
+              path="/dev/cpuctl/foreground/cpu.uclamp.max" default="max" />
+
+    <!--
+        GPU GED OPP index (38 levels, 0=1100MHz .. 37=390MHz)
+        Lower index = higher frequency
+        Estimated mapping:
+          OPP  0 = 1100 MHz
+          OPP  5 = 1005 MHz
+          OPP 10 =  910 MHz
+          OPP 15 =  815 MHz
+          OPP 20 =  720 MHz
+          OPP 25 =  625 MHz
+          OPP 30 =  530 MHz
+          OPP 37 =  390 MHz (idle floor)
+    -->
+    <resource id="0x0030" name="gpu_boost_opp"
+              path="/sys/kernel/ged/hal/custom_boost_gpu_freq" default="37" />
+    <resource id="0x0031" name="gpu_upbound_opp"
+              path="/sys/kernel/ged/hal/custom_upbound_gpu_freq" default="0" />
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<perf-config>
+    <atmc>
+        <!--
+            Little = cpu0-5 Cortex-A55 (500-2000 MHz)
+            Big    = cpu6-7 Cortex-A76 (725-2200 MHz)
+            Format: "min,max" in MHz
+        -->
+        <cpu_levels little="500,2000" big="725,2200" />
+
+        <!--
+            GPU GED OPP: 38 levels (0=1100MHz .. 37=390MHz)
+        -->
+        <gpu_levels min="37" max="0" />
+
+        <!--
+            Trip points from thermal_info_config.json (soc_max / cpu / gpu):
+              Level 3 = 85°C  (mild warm)
+              Level 4 = 90°C  (moderate)
+              Level 5 = 100°C (hot)
+              Level 6 = 117°C (critical)
+        -->
+    </atmc>
+</perf-config>
