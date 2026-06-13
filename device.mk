@@ -103,6 +103,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth-service.mediatek
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2460
+TARGET_SCREEN_WIDTH := 1080
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     com.android.hardware.boot \
