@@ -27,6 +27,9 @@ persist.dbg.wfc_avail_ovr=1
 # Logging
 log.tag=I
 
+# Lunaris
+ro.lunaris.maintainer=GUTSSNV | アイス
+
 # Media
 debug.stagefright.c2inputsurface=-1
 media.stagefright.thumbnail.prefer_hw_codecs=true
