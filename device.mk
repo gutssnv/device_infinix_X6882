@@ -450,6 +450,9 @@ PRODUCT_PACKAGES += \
     android.hardware.usb-service.mediatek \
     android.hardware.usb.gadget-service.mediatek
 
+# Vendor Logtag
+$(call inherit-product, hardware/mediatek/configs/properties/vendor_logtag.mk)
+
 # Vendor service manager
 PRODUCT_PACKAGES += \
     vndservicemanager
