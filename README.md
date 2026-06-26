@@ -1,6 +1,7 @@
-# Device tree for the Infinix HOT 50 (X6882)
+Infinix Hot 50 4G Device Tree! // X6882
+================================================================
 
-## Device specifications
+![Infinix HOT 50](https://github.com/hansnvv/png/blob/4dacf9ef4fcb49c217a807b3d2c75418d8c37860/20260606_104221.png)
 
 | Basic                   | Spec                                                        |
 | ----------------------- | :---------------------------------------------------------- |
@@ -18,7 +19,3 @@
 | Rear Camera 2           | QVGA                                                        |
 | Front Camera            | 8 MP, f/2.0, (wide), 1/4.0"                                 |
 
-
-## Device Picture
-
-![Infinix HOT 50](https://fdn2.gsmarena.com/vv/pics/infinix/infinix-hot-50-5g-x6720-1.jpg)
