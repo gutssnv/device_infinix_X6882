@@ -300,7 +300,6 @@ PRODUCT_PACKAGES += \
     SettingsResTarget \
     SettingsProviderResTarget \
     SystemUIResTarget \
-    OpenDeltaOverlayMT6789
 
 PRODUCT_PACKAGES += \
     ApertureOverlay
