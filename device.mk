@@ -47,9 +47,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 
-# Allow userspace reboots
-$(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
-
 # Audio
 $(call soong_config_set,android_hardware_audio,run_64bit,true)
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
