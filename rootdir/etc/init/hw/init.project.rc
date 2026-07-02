@@ -7,9 +7,6 @@ on init
     chown system system /proc/gesture_function
     chmod 0660 /proc/gesture_function
 
-    # OTG
-    write /sys/devices/platform/odm/odm:tran_battery/OTG_CTL 1
-
 on post-fs-data
     chmod 0660 /dev/MAINAF
     chown system camera /dev/MAINAF
@@ -74,6 +71,9 @@ on post-fs-data
     chown system system /sys/class/leds/vibrator_single/trigger
     chown system system /sys/class/leds/vibrator_single/uevent
     chown system system /sys/class/leds/vibrator_single/vbat_monitor
+    #SDD:add OTG feature for TESSCR-6368 by weike.xu 20210512 start
+    chmod 0666 /sys/devices/platform/odm/odm:tran_battery/OTG_CTL
+    #SDD:add OTG feature for TESSCR-6368 by weike.xu 20210512 end
 
 on boot
     # Stop Serial Console
@@ -97,3 +97,6 @@ on early-init
 
 on post-fs
    start nfc_hal_service.tms.aidl
+
+on property:sys.boot_completed=1
+    write /sys/devices/platform/odm/odm:tran_battery/OTG_CTL 1
