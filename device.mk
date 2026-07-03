@@ -4,8 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# API levels
-PRODUCT_SHIPPING_API_LEVEL := 31
+# AAPT
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
@@ -45,10 +46,6 @@ PRODUCT_PACKAGES += \
     checkpoint_gc
 
 PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
-
-# AAPT
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 $(call soong_config_set,android_hardware_audio,run_64bit,true)
@@ -142,7 +139,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0.vendor \
     libion.vendor \
     libui.vendor \
-    libdrm.vendor 
+    libdrm.vendor
 
 PRODUCT_PACKAGES += \
     ANGLE
@@ -186,7 +183,7 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss-V1-ndk.vendor
 
 PRODUCT_PACKAGES += \
-    libcurl.vendor 
+    libcurl.vendor
 
 # Health
 PRODUCT_PACKAGES += \
@@ -257,7 +254,7 @@ PRODUCT_PACKAGES += \
 # Linker config
 PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += \
     $(LOCAL_PATH)/configs/linker.config.json
-    
+
 # Media
 PRODUCT_PACKAGES += \
     android.hardware.media.c2@1.0.vendor:64 \
@@ -433,6 +430,9 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/google/pixel \
     hardware/transsion
+
+# Shipping Api levels
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Thermal
 PRODUCT_PACKAGES += \
