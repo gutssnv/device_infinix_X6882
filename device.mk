@@ -250,7 +250,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.lights-service.transsion
+    android.hardware.lights-service.lineage
 
 # Linker config
 PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += \
@@ -430,8 +430,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
     hardware/google/interfaces \
-    hardware/google/pixel \
-    hardware/transsion
+    hardware/google/pixel
 
 # Shipping Api levels
 PRODUCT_SHIPPING_API_LEVEL := 31
