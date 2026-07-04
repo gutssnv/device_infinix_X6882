@@ -8,6 +8,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common Lineage stuff.
+TARGET_DISABLE_EPPE := true
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit from X6882 device
@@ -26,5 +27,20 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceName=X6882 \
     BuildFingerprint=Infinix/X6882-OP/Infinix-X6882:14/UP1A.231005.007/260117V1572:user/release-keys
 
-# Time
-LINEAGE_VERSION_APPEND_TIME_OF_DAY := true
+# AxionAOSP Flags
+AXION_CAMERA_REAR_INFO := 50
+AXION_CAMERA_FRONT_INFO := 8
+AXION_MAINTAINER := ー々_guts
+AXION_PROCESSOR := Helio_G100
+PRODUCT_NO_CAMERA := false
+BYPASS_CHARGE_SUPPORTED := false
+
+# Enable activity open override fix for low-end devices or devices affected by activity open/exit freezing issue
+PERF_ANIM_OVERRIDE := true
+
+# CPU governor support
+PERF_GOV_SUPPORTED := false
+PERF_DEFAULT_GOV := schedutil
+
+# AxionFX
+TARGET_INCLUDE_AXFX := true
