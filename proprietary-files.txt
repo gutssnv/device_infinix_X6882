@@ -235,7 +235,7 @@ vendor/lib64/libtrancamJsonConvertor.so
 vendor/lib64/libtrancam_filelockmgr.so
 vendor/lib64/libTranVideoFilter.so
 vendor/lib64/libTranVideoLuminousEffects.so
-vendor/lib64/libvideofilmeffect.so
+vendor/lib64/libvideofilmeffect.so;DISABLE_CHECKELF
 vendor/lib64/libvideofilter_cl_64.so
 vendor/lib64/libVkLayer_mtk_rt_sdk.so
 vendor/lib64/libCamera_gc08a8mipiraw_B612_Preview.so
