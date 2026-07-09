@@ -900,9 +900,6 @@ on property:persist.vendor.mediatek.fg.log.enable=1
 on property:persist.vendor.mediatek.fast_charging.support=*
     write /sys/devices/platform/charger/fast_chg_indicator ${persist.vendor.mediatek.fast_charging.support}
 
-on property:sys.boot_completed=1
-    restart android-hardware-media-c2-hal-1-2
-    
     # Back to default VM settings
     write /proc/sys/vm/dirty_expire_centisecs 3000
 
