@@ -1,10 +1,10 @@
 ## All proprietary files from this list, unless pinned and noted otherwise, are
-## from X6882-H8915ABCDFGHIJLMNOPRVWX-U-OP-251121V1686
+## from X6882-H8915ABCDFGHIJLMNOPRVWX-U-OP-260117V1572
 
 dpm.img;AB
 gz.img;AB
-lk.img;AB
-logo.bin:logo.img;AB|e3075cd8e2848d92ad252f038681a9f18a89c688
+lk.img;AB|3c30f5c5ad340a9e5f06cf659903f30160d82e80
+logo.bin:logo.img;AB|49a414625efb9b9f4ff2287206dd59b28bf93f88
 mcupm.img;AB
 md1img.img;AB
 pi_img.img;AB
